@@ -28,7 +28,9 @@ var server = http.createServer(function (req, res) {
       //
       // execute pdflatex on that latex source
       //
-      var dir  = path.dirname(filepath);
+      var dir      = path.dirname(filepath)
+        , basename = path.basename(filepath, '.tmp')
+        ;
       exec('pdflatex -interaction=batchmode -output-directory=' + dir + ' ' + filepath, function (err, stdout, stderr) {
         //
         // if we there are errors respond in plain text
@@ -45,7 +47,7 @@ var server = http.createServer(function (req, res) {
         // else just send the output pdf as response
         //
         console.log('<' + filepath);
-        fs.createReadStream(filepath + '.pdf').pipe(res);
+        fs.createReadStream(path.join(dir, basename) + '.pdf').pipe(res);
       });
     });
 
