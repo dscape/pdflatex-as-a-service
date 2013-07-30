@@ -53,6 +53,5 @@ var server = http.createServer(function (req, res) {
 });
 
 //
-// start the server
-//
-server.listen(5050);
+// start the //
+server.listen(process.env.PORT || 5050);
