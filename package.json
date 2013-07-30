@@ -1,0 +1,21 @@
+{
+  "name": "pdflatex-as-a-service",
+  "version": "0.0.0",
+  "description": "pdflatex-as-a-service =====================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dscape/pdflatex-as-a-service.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/dscape/pdflatex-as-a-service/issues"
+  },
+  "dependencies": {
+    "tmp": "0.0.20"
+  }
+}
