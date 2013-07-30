@@ -23,7 +23,7 @@ var server = http.createServer(function (req, res) {
     //
     // data is completely written to tmp file
     //
-    fileStream.on('end', function () {
+    fileStream.on('close', function () {
       //
       // execute pdflatex on that latex source
       //
@@ -33,6 +33,7 @@ var server = http.createServer(function (req, res) {
         // explaining what happened
         //
         if(err || stderr) {
+          console.log('!' + path);
           res.writeHead(500, { 'Content-Type': 'text/plain' });
           res.end(err && err.message || stderr);
           return;
@@ -41,6 +42,7 @@ var server = http.createServer(function (req, res) {
         //
         // else just send the output pdf as response
         //
+        console.log('<' + path);
         fs.createReadStream(path + '.pdf').pipe(res);
       });
     });
@@ -48,6 +50,7 @@ var server = http.createServer(function (req, res) {
     //
     // pipe the body of the request to our tmp file
     //
+    console.log('>' + path);
     req.pipe(fileStream);
   });
 });
