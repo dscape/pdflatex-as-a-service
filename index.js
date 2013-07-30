@@ -17,7 +17,7 @@ var server = http.createServer(function (req, res) {
 
     //
     // create a stream for writing to our tmp file
-    // 
+    //
     var fileStream = fs.createWriteStream(path);
 
     //
