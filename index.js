@@ -9,7 +9,7 @@ var server = http.createServer(function (req, res) {
   //
   // create a temp file
   //
-  tmp.file(function (err, path) {
+  tmp.file(function (err, filepath) {
     //
     // if we have problems creating a simple temp file then its
     // better not to do anything at all
@@ -19,7 +19,7 @@ var server = http.createServer(function (req, res) {
     //
     // create a stream for writing to our tmp file
     //
-    var writeStream = fs.createWriteStream(path);
+    var writeStream = fs.createWriteStream(filepath);
 
     //
     // data is completely written to tmp file
@@ -28,14 +28,14 @@ var server = http.createServer(function (req, res) {
       //
       // execute pdflatex on that latex source
       //
-      var dir  = path.dirname(path);
-      exec('pdflatex -interaction=batchmode -output-directory=' + dir + ' ' + path, function (err, stdout, stderr) {
+      var dir  = path.dirname(filepath);
+      exec('pdflatex -interaction=batchmode -output-directory=' + dir + ' ' + filepath, function (err, stdout, stderr) {
         //
         // if we there are errors respond in plain text
         // explaining what happened
         //
         if(err || stderr) {
-          console.log('!' + path);
+          console.log('!' + filepath);
           res.writeHead(500, { 'Content-Type': 'text/plain' });
           res.end(err && err.message || stderr);
           return;
@@ -44,15 +44,15 @@ var server = http.createServer(function (req, res) {
         //
         // else just send the output pdf as response
         //
-        console.log('<' + path);
-        fs.createReadStream(path + '.pdf').pipe(res);
+        console.log('<' + filepath);
+        fs.createReadStream(filepath + '.pdf').pipe(res);
       });
     });
 
     //
     // pipe the body of the request to our tmp file
     //
-    console.log('>' + path);
+    console.log('>' + filepath);
     req.pipe(writeStream);
   });
 });
