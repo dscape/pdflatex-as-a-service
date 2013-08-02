@@ -15,8 +15,7 @@ run apt-get update
 #
 # install latex
 #
-run apt-get install -y texlive-full
-run apt-get install -y curl
+run apt-get install -y texlive-latex-base curl
 
 #
 # install nodejs 0.10.15
