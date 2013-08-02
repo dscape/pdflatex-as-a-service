@@ -34,4 +34,4 @@ run cd /opt/install/pdflatex && npm install
 
 expose 5050
 
-cmd forever /opt/install/pdflatex/index.js &
+cmd forever /opt/install/pdflatex/index.js
