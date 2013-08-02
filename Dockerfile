@@ -9,13 +9,14 @@ maintainer Nuno Job "nunojobpinto@gmail.com"
 #
 run echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 
-run apt-get update
 run apt-get upgrade
+run apt-get update
 
 #
 # install latex
 #
-run apt-get install -y texlive-full curl
+run apt-get install -y texlive-full
+run apt-get install -y curl
 
 #
 # install nodejs 0.10.15
