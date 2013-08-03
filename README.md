@@ -1,14 +1,24 @@
 # pdflatex as a service
 
-LaTeX Goes In, PDF is Stream Out
+LaTeX Goes In, PDF is Streamed Out
 
 ## Try
 
-pdflatex.ae.gy
+```
+curl pdflatex.ae.gy --data-binary @my.tex > my.pdf
+```
 
 ## Install
 
-Dependencies
+### With Docker
+
+```
+docker pull dscape/pdf-latex-as-a-service
+docker run -d dscape/pdf-latex-as-a-service
+```
+
+### By yourself
+
 
 ```
 apt-get update
@@ -18,19 +28,8 @@ mv nave.sh /bin/nave
 chmod +x /bin/nave
 nave install latest
 nave use latest
-```
-
-Start
-
-```
 git clone https://github.com/dscape/pdflatex-as-a-service.git
 cd pdflatex-as-a-service
 npm install -g forever
 nohup forever index.js &
-```
-
-Use
-
-```
-curl pdflatex.ae.gy --data-binary @my.tex > ~/Desktop/my.pdf
 ```
